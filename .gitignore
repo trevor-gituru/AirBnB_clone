@@ -1,0 +1,4 @@
+# Ignore push and create scripts
+r1.sh
+run.sh
+push.sh
