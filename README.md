@@ -1,60 +1,28 @@
-# Airbnb Clone Project
+# 0x00. AirBnB clone - The console
 
-## Overview
+![Airbnb](/images/0.png)
 
-This project aims to deploy a simplified version of the Airbnb website on your server, emphasizing fundamental concepts in the higher-level programming track. Over a span of 4 months, the development will lead to a comprehensive web application consisting of:
+## Background Context
+### Welcome to the AirBnB clone project!
+#### First step: Write a command interpreter to manage your AirBnB objects.
+This is the first step towards building your first full web application: the **AirBnB clone**. This first step is very important because you will use what you build during this project with all other following projects: HTML/CSS templating, database storage, API, front-end integration…
 
-1. **Command Interpreter**
-   - A command-line interface (CLI) for manipulating data without a visual interface. This is particularly useful for development and debugging purposes.
+Each task is linked and will help you to:
 
-2. **Front-end Website**
-   - A dynamic and static website that showcases the final product to users. This component will serve as the user interface for interacting with the application.
+- put in place a parent class (called `BaseModel`) to take care of the initialization, serialization and deserialization of your future instances
+- create a simple flow of serialization/deserialization: Instance <-> Dictionary <-> JSON string <-> file
+- create all classes used for AirBnB (`User`, `State`, `City`, `Place…`) that inherit from `BaseModel`
+- create the first abstracted storage engine of the project: File storage.
+- create all unittests to validate all our classes and storage engine
 
-3. **Data Storage (Database or Files)**
-   - Implementation of a data storage system, whether it be a database or file-based, to store and manage objects/data related to the application.
+### What’s a command interpreter?
+Do you remember the Shell? It’s exactly the same but limited to a specific use-case. In our case, we want to be able to manage the objects of our project:
 
-4. **API (Application Programming Interface)**
-   - An API that establishes a communication interface between the front-end and the data storage. This API will facilitate operations such as data retrieval, creation, deletion, and updating.
+- Create a new object (ex: a new User or a new Place)
+- Retrieve an object from a file, a database etc…
+- Do operations on objects (count, compute stats, etc…)
+- Update attributes of an object
+- Destroy an object
 
-## Project Structure
-
-The project is structured into distinct modules, each serving a specific purpose:
-
-- **Command Interpreter**
-  - Located in the `command_interpreter` directory, this module contains the command-line interface for developers to manipulate and interact with the data.
-
-- **Front-end Website**
-  - The web application's user interface resides in the `front_end` directory. This includes both static and dynamic components to provide a seamless experience for end-users.
-
-- **Data Storage**
-  - The `data_storage` directory houses the implementation of the data storage system, be it a database or file-based, for efficient management of application data.
-
-- **API**
-  - The `api` directory contains the API implementation responsible for mediating communication between the front-end and the data storage. This includes functionalities for CRUD operations.
-
-## Getting Started
-
-To set up and run the Airbnb clone on your server, follow these steps:
-
-1. **Clone the Repository**
-   ```
-   git clone https://github.com/your-username/airbnb-clone.git
-   ```
-
-2. **Navigate to Project Directory**
-   ```
-   cd airbnb-clone
-   ```
-
-3. **Install Dependencies**
-   ```
-   pip install -r requirements.txt
-   ```
-
-4. **Run the Application**
-   ```
-   python console.py
-   ```
-
-   Ensure that you configure the necessary settings for the database or file storage system in the `config.py` file.
+## Resources
 
