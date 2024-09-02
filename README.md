@@ -25,4 +25,5 @@ Do you remember the Shell? It’s exactly the same but limited to a specific use
 - Destroy an object
 
 ## Resources
-
+- [cmd module](https://docs.python.org/3.8/library/cmd.html)
+- [cmd module in depth](https://pymotw.com/2/cmd/)
