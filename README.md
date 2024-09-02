@@ -29,3 +29,4 @@ Do you remember the Shell? It’s exactly the same but limited to a specific use
 - [cmd module in depth](https://pymotw.com/2/cmd/)
 - [uuid module](https://docs.python.org/3.8/library/uuid.html)
 - [datetime](https://docs.python.org/3.8/library/datetime.html)
+- [unittest module](https://docs.python.org/3.8/library/unittest.html#module-unittest)
