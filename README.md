@@ -27,3 +27,4 @@ Do you remember the Shell? It’s exactly the same but limited to a specific use
 ## Resources
 - [cmd module](https://docs.python.org/3.8/library/cmd.html)
 - [cmd module in depth](https://pymotw.com/2/cmd/)
+- [uuid module](https://docs.python.org/3.8/library/uuid.html)
