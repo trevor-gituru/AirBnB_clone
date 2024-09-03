@@ -117,6 +117,42 @@ All tests should also pass in non-interactive mode: $ `echo "python3 -m unittest
         + examples
 - You should have an `AUTHORS `file at the root of your repository, listing all individuals having contributed content to the repository. For format, reference [Docker’s AUTHORS page](https://github.com/moby/moby/blob/master/AUTHORS)
 - You should use branches and pull requests on GitHub - it will help you as team to organize your work
+
+### 3. BaseModel
+Write a class `BaseModel` that defines all common attributes/methods for other classes:
+
+- `models/base_model.py`
+- Public instance attributes:
+    - `id`: string - assign with an `uuid` when an instance is created:
+        * you can use `uuid.uuid4()` to generate unique id but don’t forget to convert to a string
+        * the goal is to have unique id for each `BaseModel`
+- `created_at`: `datetime` - assign with the current `datetime` when an instance is created
+- `updated_at`: `datetime` - assign with the current `datetime` when an instance is created and it will be updated every time you change your object
+- `__str__`: should print: `[<class name>] (<self.id>) <self.__dict__>`
+- Public instance methods:
+- `save(self)`: updates the public instance attribute `updated_at` with the current datetime
+- `to_dict(self)`: returns a dictionary containing all keys/values of `__dict__` of the instance:
+    * by using `self.__dict__`, only instance attributes set will be returned
+    * a key `__class__` must be added to this dictionary with the class name of the object
+    * `created_at` and `updated_at` must be converted to string object in ISO format:
+        + format: ~%Y-%m-%dT%H:%M:%S.%f~ (ex: `2017-06-14T22:31:03.285259`)
+        + you can use `isoformat()` of `datetime` object
+    * This method will be the first piece of the serialization/deserialization process: create a dictionary representation with “simple object type” of our BaseModel
+```bash
+guillaume@ubuntu:~/AirBnB$ ./test_base_model.py
+[BaseModel] (b6a6e15c-c67d-4312-9a75-9d084935e579) {'my_number': 89, 'name': 'My First Model', 'updated_at': datetime.datetime(2017, 9, 28, 21, 5, 54, 119434), 'id': 'b6a6e15c-c67d-4312-9a75-9d084935e579', 'created_at': datetime.datetime(2017, 9, 28, 21, 5, 54, 119427)}
+[BaseModel] (b6a6e15c-c67d-4312-9a75-9d084935e579) {'my_number': 89, 'name': 'My First Model', 'updated_at': datetime.datetime(2017, 9, 28, 21, 5, 54, 119572), 'id': 'b6a6e15c-c67d-4312-9a75-9d084935e579', 'created_at': datetime.datetime(2017, 9, 28, 21, 5, 54, 119427)}
+{'my_number': 89, 'name': 'My First Model', '__class__': 'BaseModel', 'updated_at': '2017-09-28T21:05:54.119572', 'id': 'b6a6e15c-c67d-4312-9a75-9d084935e579', 'created_at': '2017-09-28T21:05:54.119427'}
+JSON of my_model:
+    my_number: (<class 'int'>) - 89
+    name: (<class 'str'>) - My First Model
+    __class__: (<class 'str'>) - BaseModel
+    updated_at: (<class 'str'>) - 2017-09-28T21:05:54.119572
+    id: (<class 'str'>) - b6a6e15c-c67d-4312-9a75-9d084935e579
+    created_at: (<class 'str'>) - 2017-09-28T21:05:54.119427
+
+guillaume@ubuntu:~/AirBnB$ 
+```
 ## Resources
 - [cmd module](https://docs.python.org/3.8/library/cmd.html)
 - [cmd module in depth](https://pymotw.com/2/cmd/)
