@@ -50,3 +50,16 @@ class TestBaseModel(unittest.TestCase):
             datetime.fromisoformat(base_model_dict['updated_at'])
         except ValueError:
             self.fail("to_dict() does not convert datetime objects to ISO format")
+
+    def test_str(self):
+        # Create an instance of BaseModel
+        base_model = BaseModel()
+
+        # Get the string representation of the instance
+        base_model_str = str(base_model)
+
+        # Expected format: [BaseModel] (<id>) <__dict__>
+        expected_str = f"[{base_model.__class__.__name__}] ({base_model.id}) {base_model.__dict__}"
+
+        # Check if the string matches the expected format
+        self.assertEqual(base_model_str, expected_str)
