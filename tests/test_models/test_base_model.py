@@ -21,3 +21,32 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(old_updated_at, base_model.updated_at)
         self.assertTrue(base_model.updated_at > old_updated_at)
         self.assertIsInstance(base_model.updated_at, datetime)
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'created_at': self.created_at.isoformat(),
+            'updated_at': self.updated_at.isoformat(),
+            '__class__': self.__class__.__name__,
+        }
+    
+    def test_to_dict(self):
+        # Create an instance of BaseModel
+        base_model = BaseModel()
+
+        # Get the dictionary representation of the instance
+        base_model_dict = base_model.to_dict()
+
+        # Check if the returned dictionary contains all expected keys
+        self.assertIn('id', base_model_dict)
+        self.assertIn('created_at', base_model_dict)
+        self.assertIn('updated_at', base_model_dict)
+        self.assertIn('__class__', base_model_dict)
+
+       # Check if 'created_at' and 'updated_at' are in ISO format
+        self.assertIsInstance(base_model_dict['created_at'], str)
+        self.assertIsInstance(base_model_dict['updated_at'], str)
+        try:
+            datetime.fromisoformat(base_model_dict['created_at'])
+            datetime.fromisoformat(base_model_dict['updated_at'])
+        except ValueError:
+            self.fail("to_dict() does not convert datetime objects to ISO format")
